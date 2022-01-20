@@ -7,16 +7,25 @@ export const PageTemplate = defineComponent({
       default: "Vite App"
     }
   },
-  setup(props) {
+  setup(props, context) {
     document.title = props.title
+    return {
+      slots: context.slots
+    }
   },
   render() {
     return (
       <>
-        {
-          // 動きはするけどしっくりきてない
-          renderSlot(this.$slots, "default")
-        }
+        <header>
+          <p>ヘッダー</p>
+        </header>
+        <div>
+          { renderSlot(this.slots, "default") }
+        </div>
+        <footer>
+          <hr />
+          <p>フッター</p>
+        </footer>
       </>
     )
   }
